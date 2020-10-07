@@ -20,6 +20,25 @@ soong_namespace {
 }
 
 cc_prebuilt_library_shared {
+	name: "libantradio",
+	owner: "xiaomi",
+	strip: {
+		none: true,
+	},
+	target: {
+		android_arm: {
+			srcs: ["proprietary/lib/libantradio.so"],
+		},
+		android_arm64: {
+			srcs: ["proprietary/lib64/libantradio.so"],
+		},
+	},
+	compile_multilib: "both",
+	check_elf_files: false,
+	prefer: true,
+}
+
+cc_prebuilt_library_shared {
 	name: "libgpustats",
 	owner: "xiaomi",
 	strip: {
@@ -166,7 +185,7 @@ android_app_import {
 	name: "TimeService",
 	owner: "xiaomi",
 	apk: "proprietary/vendor/app/TimeService/TimeService.apk",
-	certificate: ":timeservice_app_cert-legacy-um",
+	certificate: "platform",
 	dex_preopt: {
 		enabled: false,
 	},
